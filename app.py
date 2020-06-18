@@ -36,7 +36,7 @@ def index():
     total = len(movies)
     per_page = 16
     pagination_movies = get_movies(offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total,
+    pagination = Pagination(page=page, per_page=per_page, total=total, alignment='center',
                             css_framework='bootstrap4')
     return render_template('index.html',
                            movies=pagination_movies,
