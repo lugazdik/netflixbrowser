@@ -19,7 +19,9 @@ with open('netflix_titles.csv', encoding="utf8") as csv_file:
                 "date_added": row[6],
                 "release_year": row[7],
                 "rating": row[8],
-                "duration": row[9]
+                "duration": row[9],
+                "listed_in": row[10],
+                "description": row[11],
             })
         else:
             first_line = False
