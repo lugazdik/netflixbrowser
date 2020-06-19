@@ -10,13 +10,13 @@
 
 .wrapper{
 	position: absolute;
-    top: 20%;
+    top: 22%;
     left: 50%;
     background: rgba(0, 0, 0,0.1);
     transform: translate(-50%, -50%);
-    max-width: 550px;
+    max-width: 500px;
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     border-radius: 5px;
 }
@@ -31,8 +31,8 @@
 
 .searchbtn {
     background: #ffec00;
-    width: 10%;
-    border-radius: 5px;
+    width: 55px;
+    height: 55px;
     position: relative;
     cursor: pointer;
 }

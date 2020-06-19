@@ -1,13 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_paginate import Pagination, get_page_args
 import csv
 app = Flask(__name__)
 
 movies = []
 with open('netflix_titles.csv', encoding="utf8") as csv_file:
-    data = csv.reader(csv_file, delimiter=',')
+    movie_csv = csv.reader(csv_file, delimiter=',')
     first_line = True
-    for row in data:
+    for row in movie_csv:
         if not first_line:
             movies.append({
                 "show_id": row[0],
@@ -31,22 +31,21 @@ def get_movies(offset=0, per_page=16):
     return movies[offset: offset + per_page]
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page')
+    if request.method == 'POST':
+        print(request.form.getlist('genre'), request.form.getlist('order'), request.form.get('search_bar'))
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
     total = len(movies)
     per_page = 16
     pagination_movies = get_movies(offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total, alignment='center',
-                            css_framework='bootstrap4')
+    pagination = Pagination(page=page, per_page=per_page, total=total, alignment='center', css_framework='bootstrap4')
     return render_template('index.html',
                            movies=pagination_movies,
                            page=page,
                            per_page=per_page,
                            pagination=pagination,
                            )
-#    return render_template("index.html", movies=movies)
 
 
 if __name__ == '__main__':

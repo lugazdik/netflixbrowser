@@ -18,19 +18,59 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
 <!-- Search field -->
 <div class="wrapper">
-    <input type="text" class="input"
-           placeholder="What are you looking for?">
-    <div class="searchbtn"><i class="fas fa-search"></i></div>
+    <form method="post" action="/">
+        <table>
+            <tr>
+                <input type="text" class="input" placeholder="What are you looking for?" name="search_bar">
+                <button type="submit" class="searchbtn" id="searchbtn"><i class="fas fa-search"></i></button>
+            </tr>
+            <tr>
+                <td style="padding-right: 5px">
+                    <input type="checkbox" id="genre1" name="genre" value="Action">Action
+                </td>
+                <td style="padding-right: 5px">
+                    <input type="checkbox" id="genre2" name="genre" value="Comedy">Comedy
+                </td>
+                <td style="padding-right: 5px">
+                    <input type="checkbox" id="genre3" name="genre" value="Documentary">Documentary
+                </td>
+                <td style="padding-right: 5px">
+                    <input type="checkbox" id="genre4" name="genre" value="Horror">Horror
+                </td>
+                <td style="padding-right: 5px">
+                    <input type="radio" id="order1" name="order" value="By Year">By Year
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-right: 5px">
+                    <input type="checkbox" id="genre5" name="genre" value="Kids">Kids
+                </td>
+                <td style="padding-right: 5px">
+                    <input type="checkbox" id="genre6" name="genre" value="Romantic">Romantic
+                </td>
+                <td style="padding-right: 5px">
+                    <input type="checkbox" id="genre7" name="genre" value="Sci-Fi & Fantasy">Sci-Fi & Fantasy
+                </td>
+                <td style="padding-right: 5px">
+                    <input type="checkbox" id="genre8" name="genre" value="Thriller">Thriller
+                </td>
+                <td style="padding-right: 5px">
+                    <input type="radio" id="order2" name="order" value="By Rating">By Rating
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:200px">
 
   <!-- Movie Grid-->
     <div class="w3-row-padding w3-padding-16 w3-center" id="moviegrid">
         {%for movie in movies%}
             <div class="w3-quarter" style="height: 260px">
-                <img src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt={{ movie['title'] }} style="width:100%">
+                <a href="https://www.w3schools.com">
+                    <img src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt={{ movie['title'] }} style="width:100%"> </a>
                 <h5>{{ movie['title']}} ({{ movie['release_year'] }})</h5>
             </div>
         {%endfor%}
@@ -38,17 +78,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
     {{ pagination.links }}
 <!-- End page content -->
 </div>
-
-<script>
-// Script to open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-</script>
 
 </body>
 </html>
