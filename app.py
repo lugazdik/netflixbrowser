@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from flask_paginate import Pagination, get_page_args
 import csv
+import requests
+from lxml import html
 app = Flask(__name__)
 
 movies = []
@@ -34,6 +36,13 @@ def get_movies(offset=0, per_page=16):
 def index():
     if request.method == 'POST':
         print(request.form.getlist('genre'), request.form.getlist('order'), request.form.get('search_bar'))
+
+    url = "https://www.imdb.com/title/tt9428190/"
+    r = requests.get(url)
+    html_content = html.fromstring(r.content)
+    news_links = html_content.xpath('//div[@class="poster"]/a/img[@src]/@src')[0]
+    print(news_links)
+
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
     total = len(movies)
     per_page = 16
