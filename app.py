@@ -4,24 +4,23 @@ import csv
 app = Flask(__name__)
 
 movies = []
-with open('netflix_titles.csv', encoding="utf8") as csv_file:
+with open('IMDB_results.csv', encoding="utf8") as csv_file:
     movie_csv = csv.reader(csv_file, delimiter=',')
     first_line = True
     for row in movie_csv:
         if not first_line:
             movies.append({
-                "show_id": row[0],
-                "type": row[1],
-                "title": row[2],
-                "director": row[3],
-                "cast": row[4],
-                "country": row[5],
-                "date_added": row[6],
+                "imdb_id": row[0],
+                "imdb_rating": row[1],
+                "imdb_title": row[2],
+                "type": row[3],
+                "title": row[4],
+                "director": row[5],
+                "cast": row[6],
                 "release_year": row[7],
-                "rating": row[8],
-                "duration": row[9],
-                "listed_in": row[10],
-                "description": row[11],
+                "duration": row[8],
+                "genre": row[9],
+                "description": row[10],
             })
         else:
             first_line = False

@@ -69,9 +69,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
     <div class="w3-row-padding w3-padding-16 w3-center" id="moviegrid">
         {%for movie in movies%}
             <div class="w3-quarter" style="height: 260px">
-                <a href="https://www.w3schools.com">
+                <a href="https://www.imdb.com/{{ movie['imdb_id'] }}">
                     <img src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt={{ movie['title'] }} style="width:100%"> </a>
-                <h5>{{ movie['title']}} ({{ movie['release_year'] }})</h5>
+                <h5>{{ movie['imdb_title']}}</h5>
             </div>
         {%endfor%}
     </div>
