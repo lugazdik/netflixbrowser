@@ -21,41 +21,41 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
     <form method="post" action="/">
         <table>
             <tr>
-                <input type="text" class="input" placeholder="What are you looking for?" name="search_bar">
+                <input type="text" class="input" placeholder="{{ search_bar }}" name="search_bar">
                 <button type="submit" class="searchbtn" id="searchbtn"><i class="fas fa-search"></i></button>
             </tr>
             <tr>
                 <td style="padding-right: 5px">
-                    <input type="checkbox" id="genre1" name="genre" value="Action">Action
+                    <input type="checkbox" id="genre1" name="genre" value="Action"{{'checked="checked"' if checkboxes[0] else ""}}>Action
                 </td>
                 <td style="padding-right: 5px">
-                    <input type="checkbox" id="genre2" name="genre" value="Comedy">Comedy
+                    <input type="checkbox" id="genre2" name="genre" value="Comedies"{{'checked="checked"' if checkboxes[1] else ""}}>Comedy
                 </td>
                 <td style="padding-right: 5px">
-                    <input type="checkbox" id="genre3" name="genre" value="Documentary">Documentary
+                    <input type="checkbox" id="genre3" name="genre" value="Documentaries"{{'checked="checked"' if checkboxes[2] else ""}}>Documentary
                 </td>
                 <td style="padding-right: 5px">
-                    <input type="checkbox" id="genre4" name="genre" value="Horror">Horror
+                    <input type="checkbox" id="genre4" name="genre" value="Horror"{{'checked="checked"' if checkboxes[3] else ""}}>Horror
                 </td>
                 <td style="padding-right: 5px">
-                    <input type="radio" id="order1" name="order" value="By Year">By Year
+                    <input type="radio" id="order1" name="order" value="By Year"{{'checked="checked"' if radio[0] else ""}}>By Year
                 </td>
             </tr>
             <tr>
                 <td style="padding-right: 5px">
-                    <input type="checkbox" id="genre5" name="genre" value="Kids">Kids
+                    <input type="checkbox" id="genre5" name="genre" value="Children"{{'checked="checked"' if checkboxes[4] else ""}}>Kids
                 </td>
                 <td style="padding-right: 5px">
-                    <input type="checkbox" id="genre6" name="genre" value="Romantic">Romantic
+                    <input type="checkbox" id="genre6" name="genre" value="Romantic"{{'checked="checked"' if checkboxes[5] else ""}}>Romantic
                 </td>
                 <td style="padding-right: 5px">
-                    <input type="checkbox" id="genre7" name="genre" value="Sci-Fi & Fantasy">Sci-Fi & Fantasy
+                    <input type="checkbox" id="genre7" name="genre" value="Sci-Fi & Fantasy"{{'checked="checked"' if checkboxes[6] else ""}}>Sci-Fi & Fantasy
                 </td>
                 <td style="padding-right: 5px">
-                    <input type="checkbox" id="genre8" name="genre" value="Thriller">Thriller
+                    <input type="checkbox" id="genre8" name="genre" value="Thrillers"{{'checked="checked"' if checkboxes[7] else ""}}>Thriller
                 </td>
                 <td style="padding-right: 5px">
-                    <input type="radio" id="order2" name="order" value="By Rating">By Rating
+                    <input type="radio" id="order2" name="order" value="By Rating"{{'checked="checked"' if radio[1] else ""}}>By Rating
                 </td>
             </tr>
         </table>
@@ -68,10 +68,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
   <!-- Movie Grid-->
     <div class="w3-row-padding w3-padding-16 w3-center" id="moviegrid">
         {%for movie in movies%}
-            <div class="w3-quarter" style="height: 260px">
+            <div class="w3-quarter" style="height: 500px">
                 <a href="https://www.imdb.com/{{ movie['imdb_id'] }}">
-                    <img src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt={{ movie['title'] }} style="width:100%"> </a>
-                <h5>{{ movie['imdb_title']}}</h5>
+                    <img src="{{ movie['image'] }}" alt={{ movie['title'] }} style="width:100%"> </a>
+                <h3 style="margin: 10px 0 0 0 ">{{ movie['title'] }} ({{ movie['release_year'] }})</h3>
             </div>
         {%endfor%}
     </div>
